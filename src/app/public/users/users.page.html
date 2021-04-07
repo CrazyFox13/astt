@@ -1,0 +1,31 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>{{ title }}</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/public/home" text="" color="dark"></ion-back-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button (click)="refresh()">
+                <ion-icon name="refresh"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<app-users-items-list-skeleton [isLoaded]="isLoaded"></app-users-items-list-skeleton>
+
+<ion-content>
+    <!--    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">-->
+    <!--        <ion-refresher-content></ion-refresher-content>-->
+    <!--    </ion-refresher>-->
+    <ion-list inset="true">
+        <app-users-items-list [blockedUsers]="blockedUsers" [items]="items"
+                              [statuses]="usersStatuses"></app-users-items-list>
+    </ion-list>
+
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" *ngIf="!isLoadedEnd">
+        <ion-infinite-scroll-content
+                loadingSpinner="crescent">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

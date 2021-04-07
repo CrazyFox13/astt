@@ -1,0 +1,30 @@
+.offer {
+  padding: 1rem;
+
+  &-date{
+    margin-top: .4rem;
+    font-size: .7rem;
+    color: #aeb4b1;
+  }
+
+  &-text{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: .8rem;
+  }
+
+  &-checked{
+    position: absolute;
+    font-size: 1.5rem;
+    left: .2rem;
+    top: -.12rem
+  }
+
+  &-checked__text{
+    margin-left: 1.3rem;
+  }
+
+  &-actions > ion-button:not(:last-child) {
+    margin-bottom: .8rem;
+  }
+}

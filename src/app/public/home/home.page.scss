@@ -1,0 +1,23 @@
+.fab {
+  position: absolute;
+  right: 0;
+
+  &-item {
+    padding: .5rem;
+    background-color: #ebebeb;
+    border-radius: .2rem;
+    font-size: .8rem;
+    margin-bottom: .8rem;
+    box-shadow: 0 0 5px 0 rgba(102, 102, 102, 0.5);
+
+    &--reset {
+      background-color: #c24227;
+      color: #fff;
+    }
+
+    & > ion-icon {
+      position: absolute;
+      right: .5rem;
+    }
+  }
+}

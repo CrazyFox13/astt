@@ -1,0 +1,16 @@
+.auth {
+  padding: 1rem;
+
+  & > form > ion-button {
+    margin-top: 1.5rem;
+  }
+}
+
+.agreement{
+  margin-top: 1.5rem;
+  font-size: .8rem;
+}
+
+ion-item {
+  --padding-start: 0;
+}

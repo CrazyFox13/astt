@@ -1,0 +1,21 @@
+export interface TaskItem {
+    id: number,
+    moderation?: number,
+    name: string,
+    categoryCode: string,
+    categoryId: number,
+    categoryType: string,
+    cityId?: number,
+    cityName?: string,
+    code: string,
+    createdAt: string,
+    description: string,
+    formattedPrice: string,
+    price: number,
+    quickly?: number,
+    responses: number,
+    safe: number,
+    status: number,
+    user?: object,
+    views: number
+}

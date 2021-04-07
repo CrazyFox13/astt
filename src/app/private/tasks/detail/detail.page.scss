@@ -1,0 +1,127 @@
+.item {
+  padding: 1rem;
+
+  &-quickly {
+    color: #c24227;
+  }
+
+  &-title {
+    font-size: 1.2rem;
+    margin-top: .5rem;
+  }
+
+  &-date {
+    display: inline;
+    font-size: .7rem;
+    color: #aeb4b1;
+    margin-top: .3rem;
+  }
+
+  &-text {
+    color: #464646;
+    font-size: .9rem;
+    margin: 1rem 0 1rem 0;
+  }
+
+  &-badges {
+    margin-top: .5rem;
+  }
+
+  &-badge {
+    font-size: .6rem;
+
+    &:not(:last-child) {
+      margin-right: .3rem;
+    }
+  }
+
+  &-views-area {
+    display: inline;
+    margin-left: 1rem;
+
+    & > div {
+      display: inline;
+      font-size: .9rem;
+
+      &:not(:last-child) {
+        margin-right: .3rem;
+      }
+
+      & > span {
+        font-size: .7rem;
+        color: #8a8a8a;
+        display: inline;
+        padding-left: .15rem;
+
+        &.item-unread {
+          color: #0ec254;
+        }
+      }
+    }
+  }
+
+  &-views-icon {
+    position: relative;
+    color: #8a8a8a;
+    top: 3px;
+  }
+
+  &-status {
+    display: inline;
+
+    &__name {
+      display: inline;
+      color: #8a8a8a;
+      font-size: .8rem;
+    }
+
+    &__indicator {
+      display: inline-block;
+      width: .7rem;
+      height: .7rem;
+      background-color: #0ec254;
+      border-radius: 50%;
+      margin-right: .2rem;
+    }
+
+    &__0 {
+      background-color: #bcc2bf;
+    }
+
+    &__1 {
+      background-color: #0ec254;
+    }
+
+    &__2 {
+      background-color: #c2c100;
+    }
+
+    &__3 {
+      background-color: #c76ba0;
+    }
+
+    &__4 {
+      background-color: #4c8dff;
+    }
+
+    &__5 {
+      background-color: #45c5ff;
+    }
+
+    &__6 {
+      background-color: #c24227;
+    }
+  }
+
+  &-dates {
+    margin: 1rem 0 1rem 0;
+
+    &__date {
+      font-size: .8rem;
+
+      &:not(:last-child) {
+        margin-bottom: .3rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+<div class="item" *ngFor="let item of offers">
+    <ion-icon class="item-checked" name="checkmark" *ngIf="item?.user.isDocumentsChecked"></ion-icon>
+    <div class="item-image" (click)="detail(item?.id, item?.taskId, item?.categoryId)">
+        <ion-avatar slot="start">
+            <ion-img src="{{url}}{{item?.user.photo}}" *ngIf="item?.user.photo !== null"></ion-img>
+            <ion-img src="assets/user-default.png" *ngIf="item?.user.photo == null"></ion-img>
+        </ion-avatar>
+    </div>
+    <div class="item-details" (click)="detail(item?.id, item?.taskId, item?.categoryId)">
+        <div class="item-name">
+            {{ item?.user.name }}
+            <span *ngIf="item?.user.lastName !== null">{{item?.user.lastName}}</span>
+        </div>
+        <div class="item-additional">
+            <div class="item-city-area">
+                <div class="item-city">{{item?.createdAt}}</div>
+                <div class="item-city" *ngIf="item?.user.cityName !== null">, {{item?.user.cityName}}</div>
+            </div>
+            <div class="item-views-area">
+                <div>
+                    <ion-icon ios="ios-thumbs-up" md="md-thumbs-up"
+                              class="item-views-icon item-views-icon--positive"></ion-icon>
+                    <span>{{item?.user.ratingDetails.positive}}</span>
+                </div>
+                <div>
+                    <ion-icon ios="ios-thumbs-down" md="md-thumbs-down"
+                              class="item-views-icon item-views-icon--negative"></ion-icon>
+                    <span>{{item?.user.ratingDetails.negative}}</span>
+                </div>
+            </div>
+            <div class="item-user-area">
+                <div *ngIf="statuses !== null"
+                     class="item-user-indicator item-user-indicator--{{statuses[item?.user['c']]}}"></div>
+                <div class="item-user-name"
+                     *ngIf="statuses !== null && statuses[item?.user['c']] !== null && statuses[item?.user['c']]=='online'">
+                    онлайн
+                </div>
+                <div class="item-user-name"
+                     *ngIf="statuses !== null && statuses[item?.user['c']] !== null && statuses[item?.user['c']]=='offline'">
+                    не в сети
+                </div>
+                <app-user-rating [rating]="item?.user.totalRating"></app-user-rating>
+            </div>
+        </div>
+        <div class="item-label">
+            <ion-badge color="success" *ngIf="item?.isExecutor">Исполнитель</ion-badge>
+            <ion-badge color="warning" *ngIf="!item?.isExecutor && item?.isCandidate">Кандидат</ion-badge>
+        </div>
+    </div>
+</div>

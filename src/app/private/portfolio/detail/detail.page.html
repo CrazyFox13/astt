@@ -1,0 +1,44 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>{{title}}</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/private/portfolio" text="" color="dark"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="empty" *ngIf="empty">
+        <div class="empty-text">Нет файлов</div>
+    </div>
+    <div class="add">
+        <ion-button expand="block" (click)="takePicture()">
+            <ion-icon name="camera"></ion-icon>
+            Сделать снимок
+        </ion-button>
+    </div>
+    <ion-list inset="true">
+        <div class="item" *ngFor="let item of items">
+            <ion-item-sliding>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <ion-img src="{{url}}{{item.path}}"></ion-img>
+                    </ion-thumbnail>
+                    <div class="item-form">
+                        <div class="item-form__input">
+                            <ion-label position="floating">Описание</ion-label>
+                            <ion-input id="description{{item.id}}" placeholder="Введите описание файла"
+                                       type="text" value="{{item.description}}"></ion-input>
+                        </div>
+                        <ion-button (click)="changeDescription(item.id)">
+                            <ion-icon color="light" name="checkmark"></ion-icon>
+                        </ion-button>
+                    </div>
+                </ion-item>
+                <ion-item-options side="end">
+                    <button class="item-delete" (click)="delete(item.id)">Удалить</button>
+                </ion-item-options>
+            </ion-item-sliding>
+        </div>
+    </ion-list>
+</ion-content>

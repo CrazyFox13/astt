@@ -1,0 +1,15 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>{{title}}{{titleAppend}}</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/private/tasks/detail/{{id}}" text="" color="dark"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list inset="true">
+        <app-task-offers-list [categoryId]="iBlockId" [offers]="offers" [statuses]="usersStatuses"
+                              [taskId]="id"></app-task-offers-list>
+    </ion-list>
+</ion-content>

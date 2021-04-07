@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Авторизация</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/public/home" text="" color="dark"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="auth">
+        <form [formGroup]="userForm">
+            <ion-item>
+                <ion-label position="floating">Email</ion-label>
+                <ion-input formControlName="email" placeholder="Введите email" required type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Пароль</ion-label>
+                <ion-input formControlName="password" placeholder="Введите пароль" required type="password"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Я принимаю пользовательское соглашение</ion-label>
+                <ion-checkbox (ionChange)="agree()" [checked]="rules" slot="start"></ion-checkbox>
+            </ion-item>
+
+            <ion-button color="primary" expand="block" [disabled]="!userForm.valid || !rules" (click)="submit(userForm)">
+                Войти
+            </ion-button>
+
+            <div class="agreement">
+                <app-aggreement></app-aggreement>
+            </div>
+        </form>
+    </div>
+</ion-content>

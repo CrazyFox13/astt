@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>{{ title }}{{ taskId }}</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/private/messages" text="" color="dark"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<app-messages-list-skeleton [isLoaded]="isLoaded"></app-messages-list-skeleton>
+
+<ion-content>
+    <ion-list inset="true">
+        <div class="message" *ngFor="let item of items">
+            <div class="message-area" *ngIf="item.from !== user.c">
+                <div class="message-left">
+                    <div class="message-date">{{item.date}}</div>
+                    <div class="message-text">{{item.message}}</div>
+                </div>
+            </div>
+            <div class="message-area" *ngIf="item.from == user.c">
+                <div class="message-right">
+                    <div class="message-status">
+                        <ion-icon name="checkmark" color="light" *ngIf="!item.status"></ion-icon>
+                        <ion-icon name="done-all" color="success" *ngIf="item.status"></ion-icon>
+                    </div>
+                    <div class="message-date">{{item.date}}</div>
+                    <div class="message-text">{{item.message}}</div>
+                </div>
+            </div>
+        </div>
+    </ion-list>
+</ion-content>

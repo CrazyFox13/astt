@@ -1,0 +1,20 @@
+<div *ngIf="!isLoaded">
+  <ion-list class="ion-padding">
+    <div *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]" class="skeleton">
+      <ion-skeleton-text animated class="skeleton-image"></ion-skeleton-text>
+      <div>
+        <ion-skeleton-text animated class="skeleton-title"></ion-skeleton-text>
+        <ion-skeleton-text animated class="skeleton-subtitle"></ion-skeleton-text>
+        <div class="skeleton-ratingbar">
+          <ion-skeleton-text animated class="skeleton-indicator"></ion-skeleton-text>
+          <ion-skeleton-text animated class="skeleton-status"></ion-skeleton-text>
+          <ion-skeleton-text animated class="skeleton-star"></ion-skeleton-text>
+          <ion-skeleton-text animated class="skeleton-star"></ion-skeleton-text>
+          <ion-skeleton-text animated class="skeleton-star"></ion-skeleton-text>
+          <ion-skeleton-text animated class="skeleton-star"></ion-skeleton-text>
+          <ion-skeleton-text animated class="skeleton-star"></ion-skeleton-text>
+        </div>
+      </div>
+    </div>
+  </ion-list>
+</div>

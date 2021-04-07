@@ -1,0 +1,18 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>{{ title }}</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/public/home" text="" color="dark"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list inset="true">
+        <div class="item" *ngFor="let item of items" (click)="detail(item.id, item.taskId)">
+            <div *ngIf="unreadRooms !== null && unreadRooms[item.id] > 0"
+                 class="item-unread">+{{unreadRooms[item.id]}}</div>
+            <div class="item-title">{{item.name.UF_NAME}}</div>
+        </div>
+    </ion-list>
+</ion-content>

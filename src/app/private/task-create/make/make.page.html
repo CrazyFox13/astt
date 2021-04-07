@@ -1,0 +1,168 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>{{ title }}</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button color="dark" defaultHref="{{defaultBack}}" text=""></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <iframe [src]="url" [frameBorder]="0" *ngIf="redirect && url !== null"></iframe>
+    <form [formGroup]="makeForm" *ngIf="!redirect">
+        <div class="make">
+            <div class="make-step__title">Шаг {{step}} из {{totalSteps}}</div>
+            <ion-radio-group *ngIf="step == 1">
+                <ion-item>
+                    <ion-label>Обычное задание</ion-label>
+                    <ion-radio (ionSelect)="changeType('single')" [checked]="!stages" slot="start"
+                               value="single"></ion-radio>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Многоэтапное задание</ion-label>
+                    <ion-radio (ionSelect)="changeType('multiple')" [checked]="stages" slot="start"
+                               value="multiple"></ion-radio>
+                </ion-item>
+            </ion-radio-group>
+            <div class="make-step__description" *ngIf="step == 1">
+                Многоэтапное задание - это задание, которое можно разбить на несколько более мелких задач, которые
+                образуют одну крупную, итоговую задачу. Например: Строительство дома
+            </div>
+
+            <div class="make-name" *ngIf="step == stepsNumbers.name">
+                <ion-item>
+                    <ion-label position="floating">Мне нужно *</ion-label>
+                    <ion-input formControlName="name" placeholder="Коротко сформулируйте задачу"
+                               type="text"></ion-input>
+                </ion-item>
+            </div>
+            <div class="make-description" *ngIf="step == stepsNumbers.name">
+                <ion-item>
+                    <ion-label position="floating">Подробное описание *</ion-label>
+                    <ion-textarea
+                            formControlName="description"
+                            placeholder="Подробно опишите что требуется. Например: развезти 10 конвертов с документами в течение дня"
+                            rows="10" type="text"></ion-textarea>
+                </ion-item>
+            </div>
+            <ion-item *ngIf="step == stepsNumbers.name">
+                <ion-label>Безопасная сделка</ion-label>
+                <ion-checkbox (ionChange)="changeSafe()" [checked]="safe" slot="start"></ion-checkbox>
+            </ion-item>
+            <div class="make-step__description" *ngIf="step == stepsNumbers.name">
+                Придумайте короткое название заявки, лучше в виде короткой формулировки отвечающей на вопрос "Что
+                нужно?".<br>
+                Также обязательно составьте подробное описание, это поможет исполнителям лучше понять суть
+                работ, и сформулировать отклик.<br>
+                Если вы хотите работать только через безопасную сделку - поставьте галочку.
+            </div>
+
+            <div class="make-stages" *ngIf="step == stepsNumbers.stages">
+                <div class="make-stage" *ngFor="let i of [1,2,3,4,5]">
+                    <ion-item>
+                        <ion-label position="floating">Этап №{{i}}</ion-label>
+                        <ion-input formControlName="stage{{i}}" placeholder="Введите название этапа"
+                                   type="text"></ion-input>
+                    </ion-item>
+                    <div class="make-stage__price">
+                        <ion-item>
+                            <ion-label position="floating">Бюджет</ion-label>
+                            <ion-input formControlName="stagePrice{{i}}" placeholder="Укажите размер бюджета"
+                                       type="number" [disabled]="stagesContractPrices[i]"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>Договорная цена</ion-label>
+                            <ion-checkbox (ionChange)="changeStagePrice(i)" [checked]="stagesContractPrices[i]"
+                                          formControlName="stageContractPrice{{i}}" slot="start"></ion-checkbox>
+                        </ion-item>
+                    </div>
+                </div>
+            </div>
+            <div class="make-step__description" *ngIf="step == stepsNumbers.stages">
+                Многоэтапное задание - это задание, которое можно разбить на несколько более мелких задач, которые
+                образуют одну крупную, итоговую задачу. Например: Строительство дома
+            </div>
+
+            <div class="make-price" *ngIf="step == stepsNumbers.price">
+                <ion-item>
+                    <ion-label position="floating">Бюджет</ion-label>
+                    <ion-input formControlName="price" placeholder="Укажите размер бюджета" type="number"
+                               [disabled]="budget"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Договорная цена</ion-label>
+                    <ion-checkbox (ionChange)="changeBudget()" [checked]="budget" formControlName="contractPrice"
+                                  slot="start"></ion-checkbox>
+                </ion-item>
+            </div>
+            <div class="make-step__description" *ngIf="step == stepsNumbers.price">
+                Укажите размер бюджета который вы готовы выделить на выполнение этой работы. В случае если бюджет не
+                определён - поставьте галочку "Договорная цена"
+            </div>
+
+            <div class="make-date" *ngIf="step == stepsNumbers.date">
+                <ion-item>
+                    <ion-label position="floating">Дата начала</ion-label>
+                    <ion-datetime formControlName="dateStart" displayFormat="DD.MM.YYYY"
+                                  placeholder="Выберите дату"></ion-datetime>
+                </ion-item>
+
+            </div>
+            <div class="make-date" *ngIf="step == stepsNumbers.date">
+                <ion-item>
+                    <ion-label position="floating">Дата завершения</ion-label>
+                    <ion-datetime formControlName="dateEnd" displayFormat="DD.MM.YYYY"
+                                  placeholder="Выберите дату"></ion-datetime>
+                </ion-item>
+            </div>
+            <div class="make-step__description" *ngIf="step == stepsNumbers.date">
+                Если у вашей работы есть сроки начала и/или окончания - укажите их на этом шаге. Если нет - нажмите
+                "Далее"
+            </div>
+
+            <div class="make-checklist" *ngIf="step == stepsNumbers.make">
+                <div class="make-checklist__title">Чек-лист для откликов</div>
+                <div class="make-checklist__item" *ngFor="let i of [1,2,3,4,5]">
+                    <ion-item>
+                        <ion-label position="floating">Пункт №{{i}}</ion-label>
+                        <ion-input placeholder="Например условие или вопрос" type="text"
+                                   formControlName="checkList{{i}}" multiple="true"></ion-input>
+                    </ion-item>
+                </div>
+            </div>
+            <div class="make-step__description" *ngIf="step == stepsNumbers.make">
+                Чек-лист выводится при добавлении отклика кандидатом, и может содержать произвольный перечень например
+                вопросов. Чек-лист удобно применять например когда имеются строгие требования к исполнителю.
+                Также, вам будет доступен фильтр откликов по отмеченным исполнителями параметрам чек-листа.
+            </div>
+
+            <ion-button class="make-button" color="primary" expand="block" (click)="next()" *ngIf="step < totalSteps">
+                Далее
+            </ion-button>
+            <ion-button class="make-button" color="light" expand="block" (click)="back()" *ngIf="step > 1">
+                Назад
+            </ion-button>
+
+            <div class="make-step__description make-step__description--danger"
+                 *ngIf="!makeForm.valid && step == totalSteps">
+                Кажется вы не заполнили название или описание заявки. Пожалуйста, вернитесь на шаг
+                №{{stepsNumbers.name}}.
+            </div>
+
+            <ion-item *ngIf="step == totalSteps">
+                <ion-label>Я принимаю пользовательское соглашение</ion-label>
+                <ion-checkbox (ionChange)="agree()" [checked]="rules" slot="start"></ion-checkbox>
+            </ion-item>
+
+            <ion-button class="make-button" color="primary" expand="block" [disabled]="!makeForm.valid"
+                        (click)="submit(makeForm)"
+                        *ngIf="step == totalSteps">
+                Добавить задание
+            </ion-button>
+
+            <div *ngIf="step == totalSteps" class="agreement">
+                <app-aggreement></app-aggreement>
+            </div>
+        </div>
+    </form>
+</ion-content>

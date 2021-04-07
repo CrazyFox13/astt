@@ -1,0 +1,47 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>{{ title }}</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/public/home" text="" color="dark"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="form">
+        <div class="form-image">
+            <ion-avatar (click)="takePicture()">
+                <img alt="" class="profile-picture" src="../../../../../assets/user-default.png"
+                     *ngIf="user?.photo == null"/>
+                <img alt="" class="profile-picture" src="{{user?.photo}}" *ngIf="user?.photo !== null"/>
+            </ion-avatar>
+        </div>
+        <form [formGroup]="userForm">
+            <ion-item>
+                <ion-label position="floating">Имя *</ion-label>
+                <ion-input type="text" formControlName="name" required value="{{user?.name}}"
+                           placeholder="Введите имя"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Фамилия *</ion-label>
+                <ion-input type="text" formControlName="lastName" required value="{{user?.lastName}}"
+                           placeholder="Введите фамилию"></ion-input>
+            </ion-item>
+            <div class="form-change-password" (click)="passwordChange()" *ngIf="!isChangePassword">
+                <ion-icon name="key" color="warning"></ion-icon>
+                Изменить пароль
+            </div>
+            <div class="form-password" *ngIf="isChangePassword">
+                <ion-item>
+                    <ion-label position="floating">Пароль</ion-label>
+                    <ion-input type="password" formControlName="password"
+                               placeholder="Введите новый пароль"></ion-input>
+                </ion-item>
+            </div>
+            <ion-button color="primary" expand="block" [disabled]="!userForm.valid && user == null"
+                        (click)="submit(userForm)">
+                Применить
+            </ion-button>
+        </form>
+    </div>
+</ion-content>

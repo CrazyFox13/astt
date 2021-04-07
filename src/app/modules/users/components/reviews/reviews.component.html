@@ -1,0 +1,15 @@
+<app-user-public-info [user]="user" [statuses]="usersStatuses"></app-user-public-info>
+
+<div class="reviews">
+    <div class="reviews-item" *ngFor="let item of items">
+        <div class="reviews-item__name">
+            <ion-icon color="success" name="thumbs-up" ios="ios-thumbs-up" md="md-thumbs-up"
+                      *ngIf="item?.rating == 1"></ion-icon>
+            <ion-icon color="danger" name="thumbs-down" ios="ios-thumbs-down" md="md-thumbs-down"
+                      *ngIf="item?.rating == 0"></ion-icon>
+            {{item.name}}
+        </div>
+        <div class="reviews-item__date">{{item.textTime}}</div>
+        <div class="reviews-item__text" [innerHTML]="item?.text"></div>
+    </div>
+</div>

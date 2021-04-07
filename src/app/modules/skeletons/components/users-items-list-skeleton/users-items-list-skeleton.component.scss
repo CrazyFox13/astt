@@ -1,0 +1,56 @@
+@import "../../../../../theme/mixins/items";
+
+.skeleton {
+  @include item_base_mixin;
+  display: inline-block;
+
+  &-image {
+    width: 3rem;
+    height: 3rem;
+    float: left;
+    margin-right: .6rem;
+    margin-top: .25rem;
+    border-radius: 50%;
+    border: 1px solid #cecece;
+  }
+
+  &-title {
+    width: 65%;
+    margin-left: 3.7rem;
+    line-height: .8rem;
+  }
+
+  &-subtitle {
+    width: 45%;
+    margin-top: .5rem;
+    margin-left: 3.7rem;
+    line-height: .4rem;
+  }
+
+  &-ratingbar {
+    display: inline;
+    margin-top: .5rem;
+    margin-left: 3.7rem;
+  }
+
+  &-indicator {
+    width: .5rem;
+    height: .5rem;
+    border-radius: 50%;
+    float: left;
+  }
+
+  &-status {
+    width: 3rem;
+    line-height: .5rem;
+    float: left;
+    margin-left: .3rem;
+  }
+
+  &-star {
+    width: .5rem;
+    height: .5rem;
+    float: left;
+    margin-left: .3rem;
+  }
+}

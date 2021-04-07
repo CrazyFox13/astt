@@ -1,0 +1,17 @@
+.rating {
+  &-area {
+    margin-left: .3rem;
+    display: inline;
+    position: absolute;
+    margin-top: 2px;
+  }
+
+  &-area > ion-icon {
+    font-size: .75rem;
+    color: #bcc2bf;
+  }
+
+  &-area > ion-icon.star {
+    color: #c2c100;
+  }
+}

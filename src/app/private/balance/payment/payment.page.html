@@ -1,0 +1,27 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>{{ title }}{{ id }}</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/public/home" text="" color="dark"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="payment">
+        <div class="payment-title">Платёж #{{id}}</div>
+        <div class="payment-status">
+            <ion-badge color="success" *ngIf="payment !==null && payment?.status">Исполнен</ion-badge>
+            <ion-badge color="primary" *ngIf="payment !==null && !payment?.status">Ожидается поступление средств
+            </ion-badge>
+        </div>
+        <div class="payment-details">
+            <div class="payment-date">Дата и время создания: {{payment?.createdAt}}</div>
+            <div class="payment-date" *ngIf="payment?.payedAt !== null">Дата и время оплаты: {{payment?.payedAt}}</div>
+            <div class="payment-sum">Сумма: {{payment?.sum}}</div>
+            <div class="payment-type">Тип операции: {{payment?.type}}</div>
+        </div>
+
+        <ion-button color="primary" expand="block" (click)="request(id)">Обновить</ion-button>
+    </div>
+</ion-content>

@@ -1,0 +1,22 @@
+.properties {
+  margin-bottom: 1rem;
+}
+
+.property {
+  font-size: .9rem;
+
+  &:not(:last-child) {
+    margin-bottom: .3rem;
+    border-bottom: 1px solid #bcc2bf;
+    padding-bottom: .3rem;
+  }
+
+  &-name {
+    display: inline;
+  }
+
+  &-value {
+    display: inline;
+    float: right;
+  }
+}

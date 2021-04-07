@@ -1,0 +1,65 @@
+<ion-item-sliding *ngFor="let item of items">
+    <ion-item (click)="detail(item.id)" *ngIf="!blockedUsers[item.id]">
+        <div class="item">
+            <div class="item-container">
+                <div class="item-icons">
+                    <ion-icon class="item-icons__checked" name="lock" *ngIf="item.isSafe"></ion-icon>
+                    <ion-icon class="item-icons__checked" name="checkmark" *ngIf="item.isDocumentsChecked"></ion-icon>
+                </div>
+                <div class="item-image">
+                    <ion-avatar slot="start">
+                        <ion-img src="{{url}}{{item.photo}}" *ngIf="item.photo !== null"></ion-img>
+                        <ion-img src="assets/user-default.png" *ngIf="item.photo == null"></ion-img>
+                    </ion-avatar>
+                </div>
+                <div class="item-details">
+                    <div class="item-name">
+                        {{ item.name }}
+                        <span *ngIf="item.lastName !== null">{{item.lastName}}</span>
+                        <ion-icon class="item-star" color="warning" ios="ios-star" md="md-star" name="star"
+                                  *ngIf="item?.actions && item?.isFavourite"></ion-icon>
+                    </div>
+                    <div class="item-additional">
+                        <div class="item-city-area">
+                            <div class="item-city" *ngIf="item.cityName !== null">{{item.cityName}},</div>
+                            <div class="item-city">на сайте с {{item.formattedRegisteredAt}}</div>
+                        </div>
+                        <div class="item-views-area">
+                            <div>
+                                <ion-icon ios="ios-thumbs-up" md="md-thumbs-up"
+                                          class="item-views-icon item-views-icon--positive"></ion-icon>
+                                <span>{{item.ratingDetails.positive}}</span>
+                            </div>
+                            <div>
+                                <ion-icon ios="ios-thumbs-down" md="md-thumbs-down"
+                                          class="item-views-icon item-views-icon--negative"></ion-icon>
+                                <span>{{item.ratingDetails.negative}}</span>
+                            </div>
+                        </div>
+                        <div class="item-user-area">
+                            <div *ngIf="statuses !== null"
+                                 class="item-user-indicator item-user-indicator--{{statuses[item?.c]}}"></div>
+                            <div class="item-user-name"
+                                 *ngIf="statuses !== null && statuses[item?.c] !== null && statuses[item?.c]=='online'">
+                                онлайн
+                            </div>
+                            <div class="item-user-name"
+                                 *ngIf="statuses !== null && statuses[item?.c] !== null && statuses[item?.c]=='offline'">
+                                не в сети
+                            </div>
+                            <app-user-rating [rating]="item?.totalRating"></app-user-rating>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-item>
+    <ion-item-options side="end">
+        <button (click)="add(item.id)" class="item-add" *ngIf="item?.actions && !item?.isFavourite">
+            <ion-icon ios="ios-star" md="md-star" name="star"></ion-icon>
+        </button>
+        <button (click)="delete(item.id)" class="item-remove" *ngIf="item?.actions && item?.isFavourite">
+            <ion-icon ios="ios-star-outline" md="md-star-outline" name="star-outline"></ion-icon>
+        </button>
+    </ion-item-options>
+</ion-item-sliding>

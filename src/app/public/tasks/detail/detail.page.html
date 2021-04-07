@@ -1,0 +1,71 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>{{ title }}{{item?.id}}</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/public/tasks" text="" color="dark"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <app-user-public-info [user]="item?.user" [statuses]="usersStatuses"></app-user-public-info>
+
+    <div class="item">
+        <div class="item-status item-status__indicator item-status__{{item?.status}}"></div>
+        <div class="item-status__name" *ngIf="item?.status == 1">Открыто</div>
+        <div class="item-status__name" *ngIf="item?.status == 2">Выполняется</div>
+
+        <div class="item-badges" *ngIf="item?.safe || item?.quickly">
+            <ion-badge color="success" class="item-badge" *ngIf="item?.safe">Безопасная сделка</ion-badge>
+            <ion-badge color="danger" class="item-badge" *ngIf="item?.quickly">Срочное задание</ion-badge>
+        </div>
+
+        <div class="item-title">
+            {{item?.name}}
+        </div>
+        <div class="item-date">{{item?.createdAt}}</div>
+        <div class="item-date" *ngIf="item?.cityName !== null">, {{item?.cityName}}</div>
+        <div class="item-views-area">
+            <div>
+                <ion-icon ios="ios-eye" md="md-eye" class="item-views-icon"></ion-icon>
+                <span>{{item?.views}}</span>
+            </div>
+            <div>
+                <ion-icon ios="ios-chatbubbles" md="md-chatbubbles" class="item-views-icon"></ion-icon>
+                <span>{{item?.responses}}</span>
+            </div>
+            <div *ngIf="item?.price > 0">
+                <ion-icon ios="ios-cash" md="md-cash" class="item-views-icon"></ion-icon>
+                <span>{{item?.formattedPrice}}</span>
+            </div>
+        </div>
+        <app-map [lat]="mapLat" [long]="mapLong" [route]="mapRoute"></app-map>
+        <div class="item-dates" *ngIf="item?.begin !== null || item?.end !== null">
+            <div class="item-dates__date" *ngIf="item?.begin !== null">
+                Дата начала: {{item?.begin}}
+            </div>
+            <div class="item-dates__date" *ngIf="item?.end !== null">
+                Дата окончания: {{item?.end}}
+            </div>
+        </div>
+
+        <app-stages [stages]="item?.stages"></app-stages>
+
+        <div class="item-text" [innerHTML]="item?.description"></div>
+
+        <app-properties [properties]="item?.properties"></app-properties>
+
+        <div *ngIf="item?.images !== null || item?.files !== null">Файлы</div>
+        <app-images [images]="item?.images"></app-images>
+        <app-files [files]="item?.files"></app-files>
+
+        <div *ngIf="item !== null">
+            <app-my-offer [taskUserId]="item?.userId" [categoryType]="item?.categoryType"
+                          [categoryId]="item?.categoryId" [user]="user" [taskId]="item?.id"
+                          [taskStatus]="item?.status" [categoryCode]="item?.categoryCode"
+                          [taskCode]="itemCode" [apiKey]="apiKey"></app-my-offer>
+
+            <app-complain [task]="item" [apiKey]="apiKey"></app-complain>
+        </div>
+    </div>
+</ion-content>

@@ -1,0 +1,46 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>{{title}}{{item?.taskId}}</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/private/tasks/responses/{{item?.taskId}}/{{item?.categoryId}}" text=""
+                             color="dark"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <app-user-public-info [statuses]="usersStatuses" [user]="item?.user"></app-user-public-info>
+    <div class="offer">
+        <ion-badge color="success" *ngIf="item?.isExecutor">
+            <ion-icon name="checkmark" class="offer-checked"></ion-icon>
+            <div class="offer-checked__text">Выбран исполнителем</div>
+        </ion-badge>
+        <ion-badge color="warning" *ngIf="!item?.isExecutor && item?.isCandidate">
+            <ion-icon name="checkmark" class="offer-checked"></ion-icon>
+            <div class="offer-checked__text">Выбран кандидатом</div>
+        </ion-badge>
+        <div class="offer-date">
+            {{item?.createdAt}}
+        </div>
+        <div class="offer-text" [innerHTML]="item?.text"></div>
+        <div class="offer-actions">
+            <ion-button expand="block" color="success" size="small"
+                        [disabled]="item?.isExecutor || item?.executorExists"
+                        (click)="setExecutor(item?.id, item?.taskId, item?.categoryId)">
+                Назначить исполнителем
+            </ion-button>
+            <ion-button expand="block" color="warning" size="small"
+                        [disabled]="item?.isCandidate || item?.isExecutor || item?.executorExists"
+                        (click)="setCandidate(item?.id, item?.taskId, item?.categoryId)">
+                В кандидаты
+            </ion-button>
+            <ion-button expand="block" size="small" [disabled]="item?.isExecutor || item?.executorExists"
+                        (click)="setRejected(item?.id, item?.taskId, item?.categoryId)">
+                Отказать
+            </ion-button>
+            <ion-button expand="block" color="danger" size="small" [disabled]="item?.isExecutor || item?.executorExists"
+                        (click)="setBlock(item?.id, item?.taskId, item?.categoryId)">
+                Заблокировать
+            </ion-button>
+        </div>
+    </div>
+</ion-content>

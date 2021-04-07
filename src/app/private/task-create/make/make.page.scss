@@ -1,0 +1,45 @@
+ion-item {
+  --padding-start: 0;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.agreement{
+  margin-top: 1.5rem;
+  font-size: .8rem;
+}
+
+.make {
+  padding: 1rem;
+
+  &-step {
+    &__title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    &__description {
+      margin-top: 1rem;
+      font-size: .9rem;
+      color: #8a8a8a;
+
+      &--danger {
+        color: #c24227;
+      }
+    }
+  }
+
+  &-button {
+    margin-top: 1rem;
+  }
+
+  &-stage:not(:last-child){
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #8a8a8a;
+  }
+}

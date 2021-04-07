@@ -1,0 +1,8 @@
+<div class="files" *ngIf="files !== null">
+    <div class="file" *ngFor="let file of files">
+        <div class="file-name">
+            <a href="{{url}}{{file?.src}}">{{file.name}}</a>
+            <div class="file-size">({{file.size}})</div>
+        </div>
+    </div>
+</div>

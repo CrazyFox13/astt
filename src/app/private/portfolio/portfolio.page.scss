@@ -1,0 +1,18 @@
+ion-item {
+  --padding-start: 0;
+}
+
+ion-button {
+  margin-top: 1rem;
+}
+
+.item {
+  &-delete {
+    color: #fff;
+    background-color: #c24227;
+  }
+}
+
+.add {
+  padding: 1rem;
+}

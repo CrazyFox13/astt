@@ -1,0 +1,23 @@
+<div class="rating-area">
+    <ion-icon class="star" ios="ios-star" md="md-star"
+              *ngIf="rating >=20"></ion-icon>
+    <ion-icon class="star" ios="ios-star" md="md-star"
+              *ngIf="rating >=40"></ion-icon>
+    <ion-icon class="star" ios="ios-star" md="md-star"
+              *ngIf="rating >=60"></ion-icon>
+    <ion-icon class="star" ios="ios-star" md="md-star"
+              *ngIf="rating >=80"></ion-icon>
+    <ion-icon class="star" ios="ios-star" md="md-star"
+              *ngIf="rating >= 90 && rating <= 100"></ion-icon>
+
+    <ion-icon ios="ios-star-outline" md="md-star-outline"
+              *ngIf="rating < 20"></ion-icon>
+    <ion-icon ios="ios-star-outline" md="md-star-outline"
+              *ngIf="rating < 40"></ion-icon>
+    <ion-icon ios="ios-star-outline" md="md-star-outline"
+              *ngIf="rating < 60"></ion-icon>
+    <ion-icon ios="ios-star-outline" md="md-star-outline"
+              *ngIf="rating < 80"></ion-icon>
+    <ion-icon ios="ios-star-outline" md="md-star-outline"
+              *ngIf="rating < 90"></ion-icon>
+</div>

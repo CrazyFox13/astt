@@ -1,0 +1,45 @@
+<div class="offer" *ngIf="user !== null && user?.id !== taskUserId && isLoaded">
+    <ion-button class="offer-create" expand="block" *ngIf="offer == null"
+                (click)="createOffer(taskId, categoryId, categoryType, categoryCode, taskCode)">
+        Предложить услуги
+<!--        <span *ngIf="cost > 0" class="cost"> - {{cost}} руб.</span>-->
+    </ion-button>
+
+    <div class="offer-area" *ngIf="offer !== null">
+        <div class="offer-status">
+            <ion-icon name="done-all" ios="ios-done-all" md="md-done-all" *ngIf="offer.isRead"></ion-icon>
+            <ion-icon name="checkmark" ios="ios-checkmark" md="md-checkmark" *ngIf="!offer.isRead"></ion-icon>
+        </div>
+        <div class="offer-title">Ваше предложение</div>
+        <ion-badge class="offer-badge" color="primary"
+                   *ngIf="!offer.isExecutor && !offer.isRejected && !offer.isCandidate">
+            На рассмотрении
+        </ion-badge>
+        <ion-badge class="offer-badge" color="success" *ngIf="offer.isExecutor">
+            Принято
+        </ion-badge>
+        <ion-badge class="offer-badge" color="danger" *ngIf="!offer.isExecutor && offer.isRejected">
+            Отклонено
+        </ion-badge>
+        <ion-badge class="offer-badge" color="warning" *ngIf="!offer.isExecutor && offer.isCandidate">
+            Кандидат
+        </ion-badge>
+        <div class="offer-date">{{offer.formattedCreatedAt}}</div>
+        <div class="offer-text">{{offer.text}}</div>
+
+        <div class="offer-confirmation" *ngIf="taskStatus == 4 && offer.isExecutor">
+            <ion-button expand="block" color="success" (click)="offerConfirm(taskStatus, taskId, categoryId, apiKey)">
+                Приступить
+            </ion-button>
+
+            <ion-button expand="block" color="danger"
+                        (click)="offerReject(taskStatus, taskId, categoryId, offer.id, apiKey)">
+                Отказаться от заявки
+            </ion-button>
+        </div>
+
+        <div class="offer-confirmation" *ngIf="taskStatus == 2 && offer.isExecutor">
+            <ion-button expand="block" (click)="redirectToTask(taskId, categoryId)">Перейти в задание</ion-button>
+        </div>
+    </div>
+</div>

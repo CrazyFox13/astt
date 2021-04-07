@@ -1,0 +1,19 @@
+.complain {
+  background-color: #f3f3f3;
+  padding: 1rem;
+  margin-bottom: 1rem;
+
+  &-badge {
+    font-size: .75rem;
+  }
+
+  &-text {
+    margin-top: 1rem;
+    font-size: .9rem;
+  }
+
+  &-date {
+    margin-top: .3rem;
+    font-size: .7rem;
+  }
+}

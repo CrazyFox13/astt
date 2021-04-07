@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ title }}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/public/users/detail/{{userId}}" text="" color="dark"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<app-task-items-list-skeleton [isLoaded]="isLoaded"></app-task-items-list-skeleton>
+
+<ion-content>
+  <app-user-public-info [user]="user" [statuses]="usersStatuses"></app-user-public-info>
+  <ion-list inset="true" *ngIf="isLoaded">
+    <app-task-items-list [items]="items"></app-task-items-list>
+  </ion-list>
+</ion-content>

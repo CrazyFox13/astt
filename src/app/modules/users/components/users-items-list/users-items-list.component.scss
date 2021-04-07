@@ -1,0 +1,78 @@
+@import "../../../../../theme/mixins/items";
+@import "../../../../../theme/mixins/users";
+@import "../../../../../theme/mixins/labels";
+
+@include quickly_mixin;
+
+ion-item {
+  --padding-start: 0;
+  --padding-bottom: 0;
+  --padding-end: 0;
+  --inner-padding-start: 0;
+  --inner-padding-end: 0;
+  --inner-padding-top: 0;
+  --inner-padding-bottom: 0;
+}
+
+.item {
+  @include item_city_mixin;
+  @include item_views_mixin;
+  @include item_rounded_image_mixin;
+  @include user_indicator_mixin;
+
+  width: 100%;
+
+  &:not(:last-child) {
+    border-bottom: none;
+  }
+
+  &:not(:first-child) {
+    padding-top: .6rem;
+  }
+
+  &-container {
+    margin: .5rem 0 .5rem 0;
+  }
+
+  &-icons {
+    position: absolute;
+    right: 0;
+
+    &__checked {
+      color: #0ec254;
+    }
+  }
+
+  &-details {
+    display: inline;
+    margin-bottom: .8rem;
+  }
+
+  &-name {
+    padding-bottom: .5rem;
+    display: inline;
+  }
+
+  &-user-name {
+    display: inline;
+    font-size: .7rem;
+  }
+
+  &-add, &-remove {
+    padding: 0 1.5rem 0 1.5rem;
+  }
+
+  &-add {
+    background-color: #0ec254;
+    color: #fff;
+  }
+
+  &-remove {
+    background-color: #c24227;
+    color: #fff;
+  }
+
+  &-star {
+    font-size: .8rem;
+  }
+}

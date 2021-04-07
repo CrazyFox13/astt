@@ -1,0 +1,43 @@
+.stage {
+  font-size: .9rem;
+  border-bottom: 1px solid #cecece;
+  padding: .3rem .3rem .3rem .3rem;
+
+  &:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  &-name {
+    display: inline;
+    font-size: .9rem;
+  }
+
+  &-price {
+    font-weight: bold;
+    font-size: .8rem;
+  }
+
+  &-status {
+    display: inline-block;
+    width: .6rem;
+    height: .6rem;
+    border-radius: 50%;
+    margin-right: .2rem;
+
+    &--0 {
+      background-color: #0ec254;
+    }
+
+    &--1 {
+      background-color: #45c5ff;
+    }
+
+    &--2 {
+      background-color: #c24227;
+    }
+
+    &--3 {
+      background-color: #bcc2bf;
+    }
+  }
+}

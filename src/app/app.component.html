@@ -1,0 +1,42 @@
+<ion-app>
+    <app-menu-profile [isAuthorized]="isAuthorized" [user]="user"></app-menu-profile>
+    <ion-router-outlet id="mainContent" main>
+        <ion-tabs>
+            <ion-tab-bar slot="bottom" *ngIf="roomId == null">
+                <ion-tab-button (click)="redirect('/public/users')" *ngIf="roomId == null">
+                    <ion-icon name="people"></ion-icon>
+                    <ion-label>Исполнители</ion-label>
+                </ion-tab-button>
+
+                <ion-tab-button (click)="messages()" *ngIf="isAuthorized && roomId == null">
+                    <ion-icon name="chatbubbles"></ion-icon>
+                    <ion-label>Сообщения</ion-label>
+                    <ion-badge color="success" *ngIf="unread > 0">{{unread}}</ion-badge>
+                </ion-tab-button>
+
+                <ion-tab-button (click)="redirect('/public/tasks')" *ngIf="roomId == null">
+                    <ion-icon name="list"></ion-icon>
+                    <ion-label>Заявки</ion-label>
+                </ion-tab-button>
+
+                <ion-tab-button (click)="add()" *ngIf="roomId == null">
+                    <ion-icon name="add"></ion-icon>
+                    <ion-label>Добавить</ion-label>
+                </ion-tab-button>
+
+                <ion-tab-button (click)="redirect('/public/auth')" *ngIf="apiKey == null">
+                    <ion-icon name="key"></ion-icon>
+                    <ion-label>Войти</ion-label>
+                </ion-tab-button>
+            </ion-tab-bar>
+        </ion-tabs>
+
+        <div class="message-input" *ngIf="roomId !== null" [class.message-input__no-fixed]="kb">
+            <form [formGroup]="chatForm">
+                <ion-input type="text" formControlName="message" placeholder="Введите сообщение..."></ion-input>
+                <ion-icon (click)="sendMessage(roomId, taskId, chatForm)" color="primary"
+                          name="paper-plane"></ion-icon>
+            </form>
+        </div>
+    </ion-router-outlet>
+</ion-app>

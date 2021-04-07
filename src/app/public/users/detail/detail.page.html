@@ -1,0 +1,130 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>{{ item?.name }}</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/public/users" text="" color="dark"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="profile">
+        <div class="profile-image">
+            <ion-avatar>
+                <ion-img *ngIf="item?.photo !== null" src="{{url}}{{item?.photo}}"
+                         [alt]="item?.name"></ion-img>
+                <ion-img *ngIf="item?.photo == null" src="../../../assets/user-default.png"
+                         [alt]="item?.name"></ion-img>
+            </ion-avatar>
+        </div>
+        <div class="profile-name">
+            {{ item?.name }} <span *ngIf="item?.lastName !== null">{{item?.lastName}}</span>
+            <ion-icon color="success" name="checkmark" *ngIf="item?.isDocumentsChecked"></ion-icon>
+        </div>
+        <div class="profile-rating">
+            <ion-icon color="warning" ios="ios-star" md="md-star"
+                      *ngIf="item?.totalRating >=20"></ion-icon>
+            <ion-icon color="warning" ios="ios-star" md="md-star"
+                      *ngIf="item?.totalRating >=40"></ion-icon>
+            <ion-icon color="warning" ios="ios-star" md="md-star"
+                      *ngIf="item?.totalRating >=60"></ion-icon>
+            <ion-icon color="warning" ios="ios-star" md="md-star"
+                      *ngIf="item?.totalRating >=80"></ion-icon>
+            <ion-icon color="warning" ios="ios-star" md="md-star"
+                      *ngIf="item?.totalRating >= 90 && item?.totalRating <= 100"></ion-icon>
+
+            <ion-icon color="medium" ios="ios-star-outline" md="md-star-outline"
+                      *ngIf="item?.totalRating < 20"></ion-icon>
+            <ion-icon color="medium" ios="ios-star-outline" md="md-star-outline"
+                      *ngIf="item?.totalRating < 40"></ion-icon>
+            <ion-icon color="medium" ios="ios-star-outline" md="md-star-outline"
+                      *ngIf="item?.totalRating < 60"></ion-icon>
+            <ion-icon color="medium" ios="ios-star-outline" md="md-star-outline"
+                      *ngIf="item?.totalRating < 80"></ion-icon>
+            <ion-icon color="medium" ios="ios-star-outline" md="md-star-outline"
+                      *ngIf="item?.totalRating < 90"></ion-icon>
+
+            <div class="profile-rating__reviews">
+                <div>
+                    <ion-icon color="success" ios="ios-thumbs-up" md="md-thumbs-up"
+                              class="user-public-views-icon user-public-views-icon--positive"></ion-icon>
+                    <span>{{item?.ratingDetails?.positive}}</span>
+                </div>
+                <div>
+                    <ion-icon color="danger" ios="ios-thumbs-down" md="md-thumbs-down"
+                              class="user-public-views-icon user-public-views-icon--negative"></ion-icon>
+                    <span>{{item?.ratingDetails?.negative}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="profile-city">
+            <span *ngIf="item?.cityName !== null">{{item?.cityName}}, </span>
+            на сайте с {{item?.registeredAt}}
+        </div>
+    </div>
+    <div class="buttons">
+        <div class="created" (click)="tasks('created', item?.tasksStat?.owner, item?.id)">
+            <ion-icon color="light" name="checkmark" ios="ios-checkmark" md="md-checkmark"></ion-icon>
+            <span>Создано заданий: {{item?.tasksStat?.owner}}</span>
+        </div>
+        <div class="completed" (click)="tasks('completed', item?.tasksStat?.executor, item?.id)">
+            <ion-icon color="light" name="done-all" ios="ios-done-all" md="md-done-all"></ion-icon>
+            <span>Выполнено заданий: {{item?.tasksStat?.executor}}</span>
+        </div>
+        <div (click)="reviews('positive',item?.id,item?.ratingDetails?.positive)">
+            <ion-icon class="forward" name="arrow-round-forward" ios="ios-arrow-round-forward"
+                      md="md-arrow-round-forward" *ngIf="item?.ratingDetails?.positive"></ion-icon>
+            <ion-icon color="success" name="happy" ios="ios-happy" md="md-happy"></ion-icon>
+            Положительных отзывов: {{item?.ratingDetails?.positive}}
+        </div>
+        <div (click)="reviews('neutral',item?.id,item?.ratingDetails?.neutral)">
+            <ion-icon class="forward" name="arrow-round-forward" ios="ios-arrow-round-forward"
+                      md="md-arrow-round-forward" *ngIf="item?.ratingDetails?.neutral"></ion-icon>
+            <ion-icon color="medium" name="happy" ios="ios-happy" md="md-happy"></ion-icon>
+            Нейтральных отзывов: {{item?.ratingDetails?.neutral}}
+        </div>
+        <div (click)="reviews('negative', item?.id, item?.ratingDetails?.negative)">
+            <ion-icon class="forward" name="arrow-round-forward" ios="ios-arrow-round-forward"
+                      md="md-arrow-round-forward" *ngIf="item?.ratingDetails?.negative"></ion-icon>
+            <ion-icon color="danger" name="sad" ios="ios-sad" md="md-sad"></ion-icon>
+            Отрицательных отзывов: {{item?.ratingDetails?.negative}}
+        </div>
+    </div>
+
+    <div class="description" *ngIf="item?.description !== null">
+        <div class="description-title">О себе</div>
+        <div class="description-text">{{item?.description}}</div>
+    </div>
+
+    <div class="portfolio" *ngIf="item?.portfolio !== null">
+        <div class="portfolio-title">Портфолио</div>
+        <div class="portfolio-item" *ngFor="let i of item?.portfolio" (click)="portfolio(i.id, item?.id)">
+            <ion-icon class="forward" name="arrow-round-forward" ios="ios-arrow-round-forward"
+                      md="md-arrow-round-forward"></ion-icon>
+            <ion-icon color="medium" name="image" ios="ios-image" md="md-image"></ion-icon>
+            {{i.name}}
+        </div>
+    </div>
+
+    <div class="complain">
+        <form *ngIf="complainMode && !complainCompleted" [formGroup]="complainForm">
+            <ion-item>
+                <ion-label position="floating">Текст жалобы *</ion-label>
+                <ion-textarea formControlName="text" placeholder="Подробно опишите что произошло" rows="5"
+                              type="text"></ion-textarea>
+            </ion-item>
+
+            <ion-button (click)="submitComplain(complainForm)" [disabled]="!complainForm.valid" color="danger"
+                        expand="block">
+                Отправить жалобу
+            </ion-button>
+        </form>
+
+        <ion-button (click)="complain(id)" *ngIf="!complainMode && !complainCompleted && !complainDisallow" color="danger" expand="block"
+                    size="small">
+            Сообщить о нарушении
+        </ion-button>
+    </div>
+
+    <!--    <app-user-spec-list [items]="item?.specializations"></app-user-spec-list>-->
+</ion-content>

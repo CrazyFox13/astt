@@ -1,0 +1,42 @@
+@import "../../../../../theme/mixins/items";
+@import "../../../../../theme/mixins/users";
+@import "../../../../../theme/mixins/labels";
+
+@include quickly_mixin;
+
+.item {
+  @include item_base_mixin;
+  @include item_city_mixin;
+  @include item_views_mixin;
+  @include item_rounded_image_mixin;
+  @include user_indicator_mixin;
+
+  &-checked {
+    position: absolute;
+    color: #0ec254;
+    right: 0;
+  }
+
+  &-details {
+    display: inline;
+  }
+
+  &-label {
+    margin-left: 3.7rem;
+    margin-top: .3rem;
+  }
+
+  &-label > ion-badge {
+    font-size: .6rem;
+  }
+
+  &-name {
+    padding-bottom: .5rem;
+    display: inline;
+  }
+
+  &-user-name {
+    display: inline;
+    font-size: .7rem;
+  }
+}

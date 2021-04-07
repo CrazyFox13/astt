@@ -1,0 +1,39 @@
+<div *ngIf="user !== null" class="user-public" (click)="userDetailPage(user?.id)">
+    <div class="user-public__avatar">
+        <ion-avatar slot="start">
+            <ion-img src="../../../../../assets/user-default.png" *ngIf="user?.photo == null"></ion-img>
+            <ion-img src="{{url}}{{user?.photo}}" *ngIf="user?.photo !== null"></ion-img>
+        </ion-avatar>
+    </div>
+    <div class="user-public__name">
+        {{user?.name}}
+        <ion-icon class="user-public__checked" name="checkmark" *ngIf="user?.isDocumentsChecked"></ion-icon>
+    </div>
+    <div class="user-public__city">
+        <span *ngIf="user?.cityName !== null">{{user?.cityName}},</span>
+        на сайте с {{user?.formattedRegisteredAt}}
+    </div>
+
+    <div *ngIf="statuses !== null"
+         class="user-public-user-indicator user-public-user-indicator--{{statuses[user?.c]}}"></div>
+    <div class="user-public__status"
+         *ngIf="statuses !== null && statuses[user?.c] !== null && statuses[user?.c]=='online'">онлайн
+    </div>
+    <div class="user-public__status"
+         *ngIf="statuses !== null && statuses[user?.c] !== null && statuses[user?.c]=='offline'">не в сети
+    </div>
+
+    <app-user-rating [rating]="user?.totalRating"></app-user-rating>
+    <div class="user-public-views-area">
+        <div>
+            <ion-icon name="thumbs-up" ios="ios-thumbs-up" md="md-thumbs-up"
+                      class="user-public-views-icon user-public-views-icon--positive"></ion-icon>
+            <span>{{user?.ratingDetails.positive}}</span>
+        </div>
+        <div>
+            <ion-icon name="thumbs-down" ios="ios-thumbs-down" md="md-thumbs-down"
+                      class="user-public-views-icon user-public-views-icon--negative"></ion-icon>
+            <span>{{user?.ratingDetails.negative}}</span>
+        </div>
+    </div>
+</div>

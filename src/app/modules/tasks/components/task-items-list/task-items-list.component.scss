@@ -1,0 +1,27 @@
+@import "../../../../../theme/mixins/items";
+@import "../../../../../theme/mixins/users";
+@import "../../../../../theme/mixins/labels";
+
+@include quickly_mixin;
+
+.item {
+  width: 100%;
+  border-bottom: 1px solid #cecece;
+  padding-bottom: .6rem;
+  padding-top: .6rem;
+
+  //@include item_base_mixin;
+  @include item_city_mixin;
+  @include item_views_mixin;
+  @include user_indicator_mixin;
+
+  &-name {
+    padding-bottom: .5rem;
+    display: inline;
+  }
+
+  &-user-name {
+    display: inline;
+    font-size: .7rem;
+  }
+}

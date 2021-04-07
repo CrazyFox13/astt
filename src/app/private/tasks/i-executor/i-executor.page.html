@@ -1,0 +1,74 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>{{ title }}</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/public/home" text="" color="dark"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<app-task-items-list-skeleton [isLoaded]="isLoaded"></app-task-items-list-skeleton>
+
+<ion-content>
+    <div class="filter-area">
+        <ion-badge class="item-status__filter item-status__2" (click)="filter(2)">
+            <div class="item-status__checked" *ngIf="status == 2"></div>
+            Выполняю
+        </ion-badge>
+        <ion-badge class="item-status__filter item-status__3" (click)="filter(3)">
+            <div class="item-status__checked" *ngIf="status == 3"></div>
+            Завершено
+        </ion-badge>
+        <ion-badge class="item-status__filter item-status__4" (click)="filter(4)">
+            <div class="item-status__checked" *ngIf="status == 4"></div>
+            Ещё не принято
+        </ion-badge>
+        <ion-badge class="item-status__filter item-status__5" (click)="filter(5)">
+            <div class="item-status__checked" *ngIf="status == 5"></div>
+            Выполнил
+        </ion-badge>
+        <ion-badge class="item-status__filter item-status__6" (click)="filter(6)">
+            <div class="item-status__checked" *ngIf="status == 6"></div>
+            Арбитраж
+        </ion-badge>
+        <ion-badge *ngIf="status" class="item-status__filter item-status__0" (click)="filter(0)">Сбросить</ion-badge>
+    </div>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <ion-list inset="true">
+        <div class="item" *ngFor="let item of items"
+             (click)="detail(item?.id, item?.code, item?.categoryCode, item?.categoryType)">
+            <div class="item-status item-status__indicator item-status__{{item?.status}}"></div>
+            <div class="item-name">
+                <ion-icon class="quickly" ios="ios-flash" md="md-flash" *ngIf="item?.quickly"></ion-icon>
+                #{{item?.id}} {{ item?.name }}
+            </div>
+            <div class="item-additional">
+                <div class="item-city-area">
+                    <div class="item-city">{{item?.cityName}}, {{item?.createdAt}}</div>
+                </div>
+                <div class="item-views-area">
+                    <div>
+                        <ion-icon ios="ios-eye" md="md-eye" class="item-views-icon"></ion-icon>
+                        <span>{{item?.views}}</span>
+                    </div>
+                    <div>
+                        <ion-icon ios="ios-chatbubbles" md="md-chatbubbles" class="item-views-icon"></ion-icon>
+                        <span>{{item?.responses}}</span>
+                    </div>
+                    <div *ngIf="item?.price > 0">
+                        <ion-icon ios="ios-cash" md="md-cash" class="item-views-icon"></ion-icon>
+                        <span>{{item?.formattedPrice}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-list>
+
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" *ngIf="!isLoaded">
+        <ion-infinite-scroll-content
+                loadingSpinner="crescent">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

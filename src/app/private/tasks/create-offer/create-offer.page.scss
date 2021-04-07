@@ -1,0 +1,13 @@
+.offer {
+  padding: 1rem;
+
+  & > form > ion-textarea{
+    border: 1px solid #8a8a8a;
+    border-radius: .5rem;
+    padding: .5rem;
+  }
+
+  & > form > ion-button{
+    margin-top: 1rem;
+  }
+}

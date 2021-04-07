@@ -1,0 +1,18 @@
+.skeleton {
+  width: 100%;
+  display: inline-block;
+
+  &-right, &-left {
+    height: 3rem;
+    border-radius: .3rem;
+  }
+
+  &-right {
+    width: 54%;
+    float: right;
+  }
+
+  &-left {
+    width: 63%;
+  }
+}

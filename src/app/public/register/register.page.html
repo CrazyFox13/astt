@@ -1,0 +1,46 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Регистрация</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/public/home" text="" color="dark"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="userForm">
+        <ion-item>
+            <ion-label position="floating">Имя</ion-label>
+            <ion-input type="text" formControlName="name" required placeholder="Введите имя"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="text" formControlName="email" required placeholder="Введите email"></ion-input>
+        </ion-item>
+    </form>
+
+    <div class="form-append">
+        <ion-item>
+            <ion-label position="floating">Телефон</ion-label>
+            <!--            <ion-input type="text" required placeholder="Введите номер телефона" prefix="+{{prefix}} "-->
+            <!--                       mask="(000) 000 00 00" (keyup)="validatePhone($event)"></ion-input>-->
+            <ion-input [(ngModel)]="phone" inputmode="numeric" maxlength="11" placeholder="Введите номер телефона"
+                       required type="number"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Я принимаю пользовательское соглашение</ion-label>
+            <ion-checkbox (ionChange)="agree()" [checked]="rules" slot="start"></ion-checkbox>
+        </ion-item>
+
+        <ion-button color="primary" expand="block"
+                    [disabled]="!userForm.valid || phone.toString().length != 11 || !rules"
+                    (click)="submit(userForm)">
+            Зарегистрироваться
+        </ion-button>
+
+        <div class="agreement">
+            <app-aggreement></app-aggreement>
+        </div>
+    </div>
+</ion-content>

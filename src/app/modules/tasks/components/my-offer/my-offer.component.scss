@@ -1,0 +1,51 @@
+.offer {
+  &-area {
+    background-color: #f5f5f5;
+    padding: .6rem;
+  }
+
+  &-title {
+    display: inline;
+    font-size: .9rem;
+    font-weight: bold;
+  }
+
+  &-badge{
+    margin-left: .5rem;
+    font-size: .6rem;
+  }
+
+  &-date {
+    font-size: .7rem;
+    color: #8a8a8a;
+    margin-top: .3rem;
+  }
+
+  &-status {
+    position: absolute;
+    right: 1.5rem;
+    margin-top: -.5rem;
+
+    & > ion-icon {
+      font-size: 1rem;
+      color: #bcc2bf;
+    }
+  }
+
+  &-text{
+    margin-top: .5rem;
+    font-size: .9rem;
+  }
+
+  &-confirmation, &-completed{
+    margin-top: 1rem;
+
+    & > ion-button:not(:last-child){
+      margin-bottom: .7rem;
+    }
+  }
+}
+
+.cost {
+  padding-left: .4rem;
+}

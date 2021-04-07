@@ -1,0 +1,6 @@
+<div class="properties" *ngIf="properties !== null">
+    <div class="property" *ngFor="let property of properties">
+        <div class="property-name">{{property.name}}</div>
+        <div class="property-value">{{property.value}}</div>
+    </div>
+</div>

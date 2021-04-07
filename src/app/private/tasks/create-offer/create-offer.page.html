@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>{{ title }}{{taskId}}</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/public/tasks/{{taskId}}/{{categoryType}}/{{categoryCode}}/{{taskCode}}"
+                             text="" color="dark"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="offer">
+        <form [formGroup]="offerForm">
+            <ion-input [hidden]="true" formControlName="taskId" [value]="taskId"></ion-input>
+            <ion-input [hidden]="true" formControlName="categoryId" [value]="iBlockId"></ion-input>
+            <ion-textarea rows="10" placeholder="Введите текст Вашего предложения" formControlName="text"
+                          required></ion-textarea>
+
+            <ion-button color="primary" expand="block" [disabled]="!offerForm.valid || disabled"
+                        (click)="submit(offerForm, taskId, categoryType, categoryCode, taskCode)">
+                Отправить
+            </ion-button>
+        </form>
+    </div>
+</ion-content>

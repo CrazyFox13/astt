@@ -1,0 +1,22 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>{{ title }}</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="{{back}}" text="" color="dark"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="balanceForm" *ngIf="!orderId">
+        <ion-item>
+            <ion-label position="floating">Сумма</ion-label>
+            <ion-input formControlName="amount" type="number" placeholder="Введите сумму"></ion-input>
+        </ion-item>
+        <ion-button (click)="submit(balanceForm)" [disabled]="!balanceForm.valid" color="primary" expand="block">
+            Оплатить
+        </ion-button>
+    </form>
+
+    <iframe [src]="url" [frameBorder]="0" *ngIf="orderId && url !== null"></iframe>
+</ion-content>

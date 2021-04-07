@@ -1,0 +1,18 @@
+.result {
+  padding: 1rem;
+  text-align: center;
+
+  & > ion-icon {
+    margin: 0 auto;
+    font-size: 3rem;
+    margin-top: 2rem;
+  }
+
+  & > ion-button{
+    margin-top: 2rem;
+  }
+
+  &-text {
+    margin-top: 1.5rem;
+  }
+}

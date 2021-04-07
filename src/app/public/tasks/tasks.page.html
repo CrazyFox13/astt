@@ -1,0 +1,58 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>{{ title }}</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button color="dark" defaultHref="/public/home" text=""></ion-back-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button (click)="refresh()">
+                <ion-icon name="refresh"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<app-task-items-list-skeleton [isLoaded]="isLoaded"></app-task-items-list-skeleton>
+
+<ion-content>
+    <ion-fab *ngIf="isLoaded" horizontal="end" slot="fixed" vertical="bottom">
+        <ion-fab-button>
+            <ion-icon color="light" name="funnel"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="top">
+            <div class="fab">
+                <div (click)="filter('quickly')" class="fab-item">
+                    <ion-icon name="checkmark" *ngIf="type=='quickly'"></ion-icon>
+                    Срочные
+                </div>
+                <div (click)="filter('safe')" class="fab-item">
+                    <ion-icon name="checkmark" *ngIf="type=='safe'"></ion-icon>
+                    Безопасная сделка
+                </div>
+                <div (click)="filter('noResponses')" class="fab-item">
+                    <ion-icon name="checkmark" *ngIf="type=='noResponses'"></ion-icon>
+                    Без предложений
+                </div>
+                <div (click)="filter('lessThan10')" class="fab-item">
+                    <ion-icon name="checkmark" *ngIf="type=='lessThan10'"></ion-icon>
+                    Менее 10 предложений
+                </div>
+                <div (click)="filter('reset')" *ngIf="type !== null" class="fab-item fab-item--reset">
+                    Сбросить фильтр
+                </div>
+            </div>
+        </ion-fab-list>
+    </ion-fab>
+
+    <!--    <ion-refresher (ionRefresh)="doRefresh($event)" slot="fixed">-->
+    <!--        <ion-refresher-content></ion-refresher-content>-->
+    <!--    </ion-refresher>-->
+    <ion-list *ngIf="isLoaded" inset="true">
+        <app-task-items-list [items]="items" [statuses]="usersStatuses"
+                             [blockedUsers]="blockedUsers"></app-task-items-list>
+    </ion-list>
+
+    <ion-infinite-scroll (ionInfinite)="loadData($event)" *ngIf="!isLoadedEnd" threshold="100px">
+        <ion-infinite-scroll-content loadingSpinner="crescent"></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,34 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>{{ title }}</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/public/home" text="" color="dark"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<div *ngIf="!isLoaded">
+    <ion-list class="ion-padding">
+        <div *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]" class="skeleton">
+            <ion-skeleton-text animated></ion-skeleton-text>
+            <ion-skeleton-text animated class="skeleton-small"></ion-skeleton-text>
+        </div>
+    </ion-list>
+</div>
+
+<ion-content *ngIf="isLoaded">
+    <ion-title *ngIf="!items.length">Нет уведомлений</ion-title>
+    <ion-list inset="true" *ngIf="items.length">
+        <div *ngFor="let item of items" class="item">
+            <div class="item-title">
+                {{item?.name}}
+                <span *ngIf="item?.params['taskId'] !== null">
+                  #{{item?.params['taskId']}}
+                </span>
+            </div>
+            <div class="item-date">
+                {{item?.formattedCreatedAt}}
+            </div>
+        </div>
+    </ion-list>
+</ion-content>

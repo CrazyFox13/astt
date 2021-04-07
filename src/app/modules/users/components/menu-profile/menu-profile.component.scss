@@ -1,0 +1,74 @@
+.bar-profile {
+  background-color: #444;
+  height: 170px;
+}
+
+.profile-auth {
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 0;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  padding: 1rem;
+
+  & > div:not(:last-child){
+    margin-bottom: 1rem;
+  }
+}
+
+.profile {
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 0;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  padding-top: 1rem;
+}
+
+.profile .name {
+  color: #FFFFFF;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+.profile-picture {
+  border-radius: 50%;
+}
+
+.menu .has-header {
+  top: 169px;
+}
+
+.user-email, .user-phone, .user-balance {
+  color: #fff;
+  font-size: .8rem;
+}
+
+.documents-checked {
+  color: #13e259 !important;
+  display: inline-block;
+}
+
+.user-name-area > h5, .user-name-area > h5 {
+  display: inline-block;
+}
+
+ion-tab-bar {
+  background-color: #f2f2f2;
+
+  ion-tab-button {
+    background-color: #f2f2f2;
+
+    &.--active {
+      color: #3880ff;
+    }
+  }
+}

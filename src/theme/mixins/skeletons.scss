@@ -1,0 +1,13 @@
+@import "items";
+
+@mixin notification_skeleton_mixin {
+  .skeleton {
+    @include item_base_mixin;
+
+    &-small {
+      width: 45%;
+      line-height: .6rem;
+    }
+  }
+}
+

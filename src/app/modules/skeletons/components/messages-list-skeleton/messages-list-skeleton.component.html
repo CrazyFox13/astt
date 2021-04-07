@@ -1,0 +1,8 @@
+<div *ngIf="!isLoaded">
+    <ion-list class="ion-padding">
+        <div *ngFor="let i of [1,2,3,4,5]" class="skeleton">
+            <ion-skeleton-text animated class="skeleton-left"></ion-skeleton-text>
+            <ion-skeleton-text animated class="skeleton-right"></ion-skeleton-text>
+        </div>
+    </ion-list>
+</div>

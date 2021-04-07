@@ -1,0 +1,19 @@
+ion-list > div:not(:last-child) {
+  border-bottom: 1px solid #cecece;
+}
+
+.item {
+  font-size: .9rem;
+  padding: .8rem 0 .8rem 0;
+
+  &-unread {
+    display: inline;
+    color: #0ec254;
+    margin-right: .5rem;
+    font-weight: bold;
+  }
+
+  &-title {
+    display: inline;
+  }
+}

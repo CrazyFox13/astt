@@ -1,0 +1,76 @@
+@mixin item_base_mixin {
+  width: 100%;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #cecece;
+  }
+
+  &:first-child {
+    padding-bottom: .6rem;
+  }
+
+  &:not(:first-child) {
+    padding-bottom: .6rem;
+    padding-top: .6rem;
+  }
+}
+
+@mixin item_city_mixin {
+  &-city-area, &-views-area {
+    font-size: .9rem;
+    display: inline;
+  }
+
+  &-city, &-views-area > div {
+    padding-left: .5rem;
+  }
+
+  &-city, &-views-area > div > span {
+    font-size: .7rem;
+    color: #8a8a8a;
+    display: inline;
+    padding-left: .15rem;
+  }
+}
+
+@mixin item_views_mixin {
+  &-views-area > div {
+    display: inline;
+  }
+
+  &-views-area {
+    position: absolute;
+    right: 0;
+  }
+
+  &-views-icon {
+    position: relative;
+    color: #8a8a8a;
+    top: 3px;
+
+    &--positive {
+      color: #0ec254;
+    }
+
+    &--negative {
+      color: #c24227;
+    }
+  }
+}
+
+@mixin item_rounded_image_mixin {
+  &-image {
+    width: 3rem;
+    height: 3rem;
+    float: left;
+    margin-right: .6rem;
+    margin-top: .2rem;
+    margin-bottom: .2rem;
+
+    & > ion-avatar > ion-img {
+      width: 3rem;
+      height: 3rem;
+      border: 1px solid #cecece;
+    }
+  }
+}

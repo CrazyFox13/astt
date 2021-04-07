@@ -1,0 +1,10 @@
+<div class="complain" *ngIf="complain !== null">
+    <ion-badge class="complain-badge" color="danger" *ngIf="owner !== complain?.userId">
+        Претензия открыта исполнителем
+    </ion-badge>
+    <ion-badge class="complain-badge" color="danger" *ngIf="owner == complain?.userId">
+        Претензия открыта заказчиком
+    </ion-badge>
+    <div class="complain-date">{{complain?.formattedCreatedAt}}</div>
+    <div class="complain-text" [innerHTML]="complain?.text"></div>
+</div>

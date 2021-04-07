@@ -1,0 +1,8 @@
+<div class="stages" *ngIf="stages !== null">
+    <div class="stage" *ngFor="let stage of stages">
+        <div class="stage-status stage-status--{{stage.status}}"></div>
+        <div class="stage-name">{{stage.name}}</div>
+        <div class="stage-price" *ngIf="stage.price">{{stage.price}} руб.</div>
+        <div class="stage-price" *ngIf="!stage.price">н/д</div>
+    </div>
+</div>

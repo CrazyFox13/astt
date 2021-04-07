@@ -1,0 +1,37 @@
+<div *ngFor="let item of items">
+    <div (click)="detail(item.id, item.code, item.categoryCode, item.categoryType)" *ngIf="!blockedUsers[item.user.id]"
+         class="item">
+        <div class="item-name">
+            <ion-icon class="quickly" name="flash" *ngIf="item.quickly"></ion-icon>
+            <ion-icon class="quickly" color="success" name="lock" *ngIf="item.safe"></ion-icon>
+            {{ item.name }}
+        </div>
+        <div class="item-additional">
+            <div class="item-city-area">
+                <div class="item-city">{{item.cityName}}, {{item.createdAt}}</div>
+            </div>
+            <div class="item-views-area">
+                <div>
+                    <ion-icon name="eye" class="item-views-icon"></ion-icon>
+                    <span>{{item.views}}</span>
+                </div>
+                <div>
+                    <ion-icon name="chatbubbles" class="item-views-icon"></ion-icon>
+                    <span>{{item.responses}}</span>
+                </div>
+                <div *ngIf="item.price > 0">
+                    <ion-icon name="cash" class="item-views-icon"></ion-icon>
+                    <span>{{item.formattedPrice}}</span>
+                </div>
+            </div>
+            <div class="item-user-area">
+                <div *ngIf="statuses !== null"
+                     class="item-user-indicator item-user-indicator--{{statuses[item.user.c]}}"></div>
+                <div class="item-user-name">{{item.user.name}}</div>
+
+                <app-user-rating [rating]="item?.user.totalRating"></app-user-rating>
+                <div class="quickly-text" *ngIf="item.quickly">Срочно</div>
+            </div>
+        </div>
+    </div>
+</div>

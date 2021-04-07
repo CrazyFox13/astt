@@ -1,0 +1,91 @@
+<ion-menu contentId="mainContent" side="start">
+    <ion-header *ngIf="!isAuthorized">
+        <div class="bar-profile">
+            <div class="profile-auth">
+                <div class="auth">
+                    <ion-button (click)="redirect('/public/auth')" color="light" expand="block">
+                        Войти
+                    </ion-button>
+                </div>
+                <div class="register">
+                    <ion-button (click)="redirect('/public/register')" color="light" expand="block">
+                        Зарегистрироваться
+                    </ion-button>
+                </div>
+            </div>
+        </div>
+    </ion-header>
+    <ion-header *ngIf="isAuthorized && user !== null">
+        <div class="bar-profile">
+            <div class="profile">
+                <img alt="" class="profile-picture" src="../../../../../assets/user-default.png"
+                     *ngIf="user?.photo == null"/>
+                <img alt="" class="profile-picture" src="{{user?.photo}}" *ngIf="user?.photo !== null"/>
+                <div class="user-name-area">
+                    <h5 class="name" *ngIf="user?.name !== null">{{user?.name}}</h5>
+                    <ion-icon *ngIf="user?.isDocumentsChecked" class="documents-checked" name="checkmark"></ion-icon>
+                </div>
+                <div class="user-email" *ngIf="user?.email !== null">{{user?.email}}</div>
+                <div class="user-phone" *ngIf="user?.formattedPhone !== null">{{user?.formattedPhone}}</div>
+                <div class="user-balance" *ngIf="user?.balance?.formattedAmount !== null">
+                    Баланс: {{user?.balance?.formattedAmount}} {{user?.balance?.currency}}
+                </div>
+            </div>
+        </div>
+    </ion-header>
+    <ion-content>
+        <ion-list>
+            <ion-item (click)="logout()" mode="md" *ngIf="isAuthorized">
+                <ion-label>Выйти</ion-label>
+                <ion-icon name="close"></ion-icon>
+            </ion-item>
+<!--            <ion-item *ngIf="isAuthorized && user !== null && !user?.isExecutor" (click)="redirect('executor')">-->
+<!--                Стать исполнителем-->
+<!--            </ion-item>-->
+            <ion-item (click)="redirect('/public/cities')" mode="md">
+                <ion-label>Изменить город</ion-label>
+                <ion-icon name="arrow-forward"></ion-icon>
+            </ion-item>
+<!--            <ion-item *ngIf="isAuthorized && user !== null && user?.isExecutor" mode="md">-->
+<!--                <ion-label>Настройки исполнителя</ion-label>-->
+<!--                <ion-icon name="arrow-forward"></ion-icon>-->
+<!--            </ion-item>-->
+            <ion-item *ngIf="isAuthorized" (click)="redirect('/private/settings')" mode="md">
+                <ion-label>Профиль</ion-label>
+                <ion-icon name="arrow-forward"></ion-icon>
+            </ion-item>
+            <ion-item *ngIf="isAuthorized" (click)="redirect('/private/portfolio')" mode="md">
+                <ion-label>Моё портфолио</ion-label>
+                <ion-icon name="arrow-forward"></ion-icon>
+            </ion-item>
+<!--            <ion-item *ngIf="isAuthorized" (click)="redirect('/private/balance')" mode="md">-->
+<!--                <ion-label>Пополнение баланса</ion-label>-->
+<!--                <ion-icon name="arrow-forward"></ion-icon>-->
+<!--            </ion-item>-->
+            <ion-item *ngIf="isAuthorized" (click)="redirect('/private/notifications')" mode="md">
+                <ion-label>Уведомления</ion-label>
+                <ion-icon name="arrow-forward"></ion-icon>
+            </ion-item>
+            <ion-item *ngIf="isAuthorized" (click)="redirect('/private/messages')" mode="md">
+                <ion-label>Диалоги</ion-label>
+                <ion-icon name="arrow-forward"></ion-icon>
+            </ion-item>
+            <ion-item *ngIf="isAuthorized" (click)="redirect('/private/tasks')" mode="md">
+                <ion-label>Мои заявки</ion-label>
+                <ion-icon name="arrow-forward"></ion-icon>
+            </ion-item>
+            <ion-item *ngIf="isAuthorized" (click)="redirect('/private/tasks/i-executor')" mode="md">
+                <ion-label>Я исполнитель</ion-label>
+                <ion-icon name="arrow-forward"></ion-icon>
+            </ion-item>
+            <ion-item *ngIf="isAuthorized" (click)="redirect('/private/black-list')" mode="md">
+                <ion-label>Чёрный список</ion-label>
+                <ion-icon name="arrow-forward"></ion-icon>
+            </ion-item>
+            <ion-item *ngIf="isAuthorized" (click)="redirect('/private/favourites')" mode="md">
+                <ion-label>Избранное</ion-label>
+                <ion-icon name="arrow-forward"></ion-icon>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-menu>

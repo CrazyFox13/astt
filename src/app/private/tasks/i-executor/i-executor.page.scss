@@ -1,0 +1,156 @@
+.item {
+  width: 100%;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #e4e4e4;
+  }
+
+  &-city-area, &-views-area {
+    font-size: .9rem;
+    display: inline;
+  }
+
+  &-views-area > div {
+    display: inline;
+  }
+
+  &-name {
+    padding-bottom: .5rem;
+    display: inline;
+    font-size: .8rem;
+  }
+
+  &-views-area {
+    position: absolute;
+    right: 0;
+  }
+
+  &-city, &-views-area > div {
+    padding-left: .5rem;
+  }
+
+  &-city, &-views-area > div > span {
+    font-size: .7rem;
+    color: #8a8a8a;
+    display: inline;
+    padding-left: .15rem;
+
+    &.item-unread {
+      color: #0ec254;
+    }
+  }
+
+  &-views-icon {
+    position: relative;
+    color: #8a8a8a;
+    top: 3px;
+  }
+
+  &-user-indicator {
+    width: 8px;
+    height: 8px;
+    background-color: #0ec254;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: .3rem;
+  }
+
+  &-user-name {
+    display: inline;
+    font-size: .7rem;
+  }
+
+  &-user-rating-area {
+    margin-left: .3rem;
+    display: inline;
+    position: absolute;
+    margin-top: 2px;
+  }
+
+  &-user-rating-area > ion-icon {
+    font-size: .75rem;
+    color: #bcc2bf;
+  }
+
+  &-user-rating-area > ion-icon.star {
+    color: #c2c100;
+  }
+
+  &-status {
+    display: inline;
+
+    &__checked {
+      display: inline-block;
+      width: .55rem;
+      height: .55rem;
+      border-radius: 50%;
+      background-color: #fff;
+    }
+
+    &__filter {
+      margin-bottom: .3rem;
+    }
+
+    &__filter:not(:last-child) {
+      margin-right: .4rem;
+    }
+
+    &__indicator {
+      display: inline-block;
+      width: .6rem;
+      height: .6rem;
+      background-color: #0ec254;
+      border-radius: 50%;
+      margin-right: .2rem;
+    }
+
+    &__0 {
+      background-color: #bcc2bf;
+    }
+
+    &__1 {
+      background-color: #0ec254;
+    }
+
+    &__2 {
+      background-color: #c2c100;
+    }
+
+    &__3 {
+      background-color: #c76ba0;
+    }
+
+    &__4 {
+      background-color: #4c8dff;
+    }
+
+    &__5 {
+      background-color: #45c5ff;
+    }
+
+    &__6 {
+      background-color: #c24227;
+    }
+  }
+}
+
+.quickly {
+  color: #c24227;
+  position: relative;
+  top: 3px;
+}
+
+.quickly-text {
+  color: #c24227;
+  font-size: 0.7rem;
+  position: absolute;
+  display: inline;
+  right: 0;
+  margin-top: 5px;
+}
+
+.filter-area {
+  padding: 1rem 1rem 0 1rem;
+}

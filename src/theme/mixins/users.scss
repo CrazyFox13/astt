@@ -1,0 +1,18 @@
+@mixin user_indicator_mixin {
+  &-user-indicator {
+    width: 8px;
+    height: 8px;
+    background-color: #0ec254;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: .3rem;
+
+    &--offline {
+      background-color: #cecece;
+    }
+
+    &--online {
+      background-color: #0ec254;
+    }
+  }
+}
