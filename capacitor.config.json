@@ -1,0 +1,20 @@
+{
+  "appId": "ru.democontent.pi",
+  "appName": "Сервис поиска исполнителей",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "PushNotifications": {
+      "presentationOptions": [
+        "badge",
+        "sound",
+        "alert"
+      ],
+      "Keyboard": {
+        "resize": "body",
+        "style": "dark"
+      }
+    }
+  }
+}
